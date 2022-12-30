@@ -1,9 +1,8 @@
+import { BASE_NAME, BOWLS_KEY } from "../../lib/constants";
+
 const handler = async (req, res) => {
 
-    res.json({key: 'status'});
-    return;
-
-    const url = `https://database.deta.sh/v1/${process.env.DETA_ID}/riley/items/status`;
+    const url = `https://database.deta.sh/v1/${process.env.DETA_ID}/${BASE_NAME}/items/${BOWLS_KEY}`;
 
 
     if (req.method == 'GET') {
