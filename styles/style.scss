@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+
+@media (max-width: 620px) {
+    #container {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media (min-width: 621px) {
+    #container {
+        width: 600px;
+        margin: 0 auto;
+    }
+
+}
+
+body {
+    font-family: 'Archivo', sans-serif;
+    color: #12100e;
+}
+
+.clearfloat {
+    clear: both;
+}
+
+#pageheader {
+    padding-top: 1.0rem;
+}
+
+.riley_image {
+    float: right;
+    width: 100px;
+    height: 117px;
+    padding-right: 10px;
+}
+
+h1,h2 {
+    font-family: 'Julius Sans One', sans-serif;
+}
+
+#content-grid {
+    display: grid;
+    grid-template-columns: auto auto 70px;
+    grid-template-rows: auto;
+}
+
+.head-grid {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+
+    @at-root h2 {
+        text-decoration: underline;
+        text-decoration-color: orange;
+    }
+}
+
+button {
+    place-self: center;
+    padding: 0.5rem;
+    border: 1px solid orange;
+    background-color: cornsilk;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.0rem;
+    color: #12100e;
+}
