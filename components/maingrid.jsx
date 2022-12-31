@@ -108,11 +108,11 @@ const MainGrid = () => {
             <button onClick={updateFood}>update</button>
 
             <p>Downstairs Water</p>
-            <MessageBox isLoading={bowlsIsLoading} date={bowlsStatus['down-change']} threshold={2} />
+            <MessageBox isLoading={bowlsIsLoading} data={bowlsStatus} date='down-change' threshold={2} />
             <button onClick={updateWaterDown}>update</button>
 
             <p>Upstairs Water</p>
-            <MessageBox isLoading={bowlsIsLoading} date={bowlsStatus['up-change']} threshold={2}/>
+            <MessageBox isLoading={bowlsIsLoading} data={bowlsStatus} date='up-change' threshold={2}/>
             <button onClick={updateWaterUp}>update</button>
 
             <h2 className="head-grid">Litters</h2>
@@ -120,31 +120,31 @@ const MainGrid = () => {
             <p className="head-grid">Downstairs Litter</p>
 
             <p> - scooped</p>
-            <MessageBox isLoading={littersIsLoading} date={littersStatus['down-scoop']} threshold={2} />
+            <MessageBox isLoading={littersIsLoading} data={littersStatus} date='down-scoop' threshold={2} />
             <button onClick={updateScoopDown}>update</button>
-            
+
             <p> - changed</p>
-            <MessageBox isLoading={littersIsLoading} date={littersStatus['down-change']} threshold={21} />
+            <MessageBox isLoading={littersIsLoading} data={littersStatus} date='down-change' threshold={21} />
             <button onClick={updateCleanDown}>update</button>
 
             <p className="head-grid">Upstairs Litter</p>
 
             <p> - scooped</p>
-            <MessageBox isLoading={littersIsLoading} date={littersStatus['up-scoop']} threshold={2} />
+            <MessageBox isLoading={littersIsLoading} data={littersStatus} date='up-scoop' threshold={2} />
             <button onClick={updateScoopUp}>update</button>
 
             <p> - changed</p>
-            <MessageBox isLoading={littersIsLoading} date={littersStatus['up-change']} threshold={21} />
+            <MessageBox isLoading={littersIsLoading} data={littersStatus} date='up-change' threshold={21} />
             <button onClick={updateCleanUp}>update</button>
 
             <h2 className="head-grid">Treatments</h2>
 
             <p>Flea</p>
-            <MessageBox isLoading={treatmentsIsLoading} date={treatmentsStatus.fleas} threshold={30} />
+            <MessageBox isLoading={treatmentsIsLoading} data={treatmentsStatus} date='fleas' threshold={30} />
             <button onClick={updateFleas}>update</button>
 
             <p>Worms</p>
-            <MessageBox isLoading={treatmentsIsLoading} date={treatmentsStatus.worms} threshold={90} />
+            <MessageBox isLoading={treatmentsIsLoading} data={treatmentsStatus} date='worms' threshold={90} />
             <button onClick={updateWorms}>update</button>
         </div>
     )

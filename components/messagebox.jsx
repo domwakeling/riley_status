@@ -1,7 +1,8 @@
-const MessageBox = ({ isLoading, date }) => {
+const MessageBox = ({ isLoading, data, date, threshold }) => {
+
     return (
         <p>
-            {isLoading ? '...' : date}
+            {isLoading ? '...' : data[date]}
         </p>
     )
 }
