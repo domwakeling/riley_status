@@ -1,3 +1,4 @@
+import BowlBox from './bowlbox';
 import MessageBox from './messagebox';
 import { mutate } from 'swr';
 import useBowls from '../lib/bowls';
@@ -102,9 +103,7 @@ const MainGrid = () => {
             <h2 className="head-grid">Food &amp; Water</h2>
 
             <p>Food</p>
-            <p>
-                {bowlsIsLoading ? '...' : bowlsStatus.food}
-            </p>
+            <BowlBox />
             <button onClick={updateFood}>update</button>
 
             <p>Downstairs Water</p>
