@@ -78,3 +78,7 @@ button {
         background-color: lighten($project_color, 10%);
     }
 }
+
+p.overdue {
+    color: red;
+}
