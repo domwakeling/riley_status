@@ -62,14 +62,6 @@ const handler = async (req, res) => {
         const date = new Date().toLocaleString('en-GB', { timeZone: 'UTC' });
         const treatment = JSON.parse(req.body).treatment;
 
-        const loggin = JSON.stringify({
-            "set": {
-                treatment: date
-            }
-        });
-        console.log(loggin);
-        console.log(`{"set":"${treatment}":"${date}"}`);
-
         try {
             const patch_result = await fetch(url, {
                 method: 'PATCH',
@@ -78,11 +70,6 @@ const handler = async (req, res) => {
                     'Content-Type': 'application/json'
                 },
                 body: `{"set":{"${treatment}":"${date}"}}`
-                // body: JSON.stringify({
-                //     "set": {
-                //         treatment: date
-                //     }
-                // })
             });
 
             const data = await patch_result.json();

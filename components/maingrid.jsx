@@ -9,6 +9,69 @@ const MainGrid = () => {
     const { status: littersStatus, isLoading: littersIsLoading } = useLitters();
     const { status: treatmentsStatus, isLoading: treatmentsIsLoading } = useTreatments();
 
+    const updateBowls = async (changed) => {
+        try {
+            const res = await fetch('/api/bowls', {
+                method: 'PATCH',
+                body: JSON.stringify({
+                    changed
+                })
+            });
+            mutate('/api/bowls')
+        } catch (err) {
+            console.warn(err)
+        }
+    }
+
+    const updateFood = (e) => {
+        e.preventDefault();
+        updateBowls('food');
+    }
+
+    const updateWaterUp = (e) => {
+        e.preventDefault();
+        updateBowls('up-change');
+    }
+
+    const updateWaterDown = (e) => {
+        e.preventDefault();
+        updateBowls('down-change');
+    }
+
+    const updateLitters = async (cleaned) => {
+        try {
+            const res = await fetch('/api/litters', {
+                method: 'PATCH',
+                body: JSON.stringify({
+                    cleaned
+                })
+            });
+            mutate('/api/litters')
+        } catch (err) {
+            console.warn(err)
+        }
+    }
+
+    const updateScoopUp = (e) => {
+        e.preventDefault();
+        updateLitters('up-scoop');
+    }
+
+    const updateScoopDown = (e) => {
+        e.preventDefault();
+        updateLitters('down-scoop');
+    }
+
+    const updateCleanUp = (e) => {
+        e.preventDefault();
+        updateLitters('up-change');
+    }
+
+    const updateCleanDown = (e) => {
+        e.preventDefault();
+        updateLitters('down-change');
+    }
+
     const updateTreatments = async (treatment) => {
         try {
             const res = await fetch('/api/treatments', {
@@ -19,7 +82,7 @@ const MainGrid = () => {
             });
             mutate('/api/treatments')
         } catch (err) {
-            // deal with error
+            console.warn(err)
         }
     }
 
@@ -38,42 +101,42 @@ const MainGrid = () => {
             <h2 className="head-grid">Food &amp; Water</h2>
             <p>Food</p>
             <p>
-                {bowlsIsLoading ? '...' : 'loaded'}
+                {bowlsIsLoading ? '...' : bowlsStatus.food}
             </p>
-            <button>update</button>
+            <button onClick={updateFood}>update</button>
             <p>Downstairs Water</p>
             <p>
-                {bowlsIsLoading ? '...' : 'loaded'}
+                {bowlsIsLoading ? '...' : bowlsStatus['down-change']}
             </p>
-            <button>update</button>
+            <button onClick={updateWaterDown}>update</button>
             <p>Upstairs Water</p>
             <p>
-                {bowlsIsLoading ? '...' : 'loaded'}
+                {bowlsIsLoading ? '...' : bowlsStatus['up-change']}
             </p>
-            <button>update</button>
+            <button onClick={updateWaterUp}>update</button>
             <h2 className="head-grid">Litters</h2>
             <p className="head-grid">Downstairs Litter</p>
             <p> - scooped</p>
             <p>
-                {littersIsLoading ? '...' : 'loaded'}
+                {littersIsLoading ? '...' : littersStatus["down-scoop"]}
             </p>
-            <button>update</button>
+            <button onClick={updateScoopDown}>update</button>
             <p> - changed</p>
             <p>
-                {littersIsLoading ? '...' : 'loaded'}
+                {littersIsLoading ? '...' : littersStatus["down-change"]}
             </p>
-            <button>update</button>
+            <button onClick={updateCleanDown}>update</button>
             <p className="head-grid">Upstairs Litter</p>
             <p> - scooped</p>
             <p>
-                {littersIsLoading ? '...' : 'loaded'}
+                {littersIsLoading ? '...' : littersStatus["up-scoop"]}
             </p>
-            <button>update</button>
+            <button onClick={updateScoopUp}>update</button>
             <p> - changed</p>
             <p>
-                {littersIsLoading ? '...' : 'loaded'}
+                {littersIsLoading ? '...' : littersStatus["up-change"]}
             </p>
-            <button>update</button>
+            <button onClick={updateCleanUp}>update</button>
             <h2 className="head-grid">Treatments</h2>
             <p>Flea</p>
             <p>
