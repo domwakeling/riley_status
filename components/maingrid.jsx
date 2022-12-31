@@ -1,3 +1,4 @@
+import MessageBox from './messagebox';
 import { mutate } from 'swr';
 import useBowls from '../lib/bowls';
 import useLitters from '../lib/litters';
@@ -99,54 +100,51 @@ const MainGrid = () => {
     return (
         <div id="content-grid">
             <h2 className="head-grid">Food &amp; Water</h2>
+
             <p>Food</p>
             <p>
                 {bowlsIsLoading ? '...' : bowlsStatus.food}
             </p>
             <button onClick={updateFood}>update</button>
+
             <p>Downstairs Water</p>
-            <p>
-                {bowlsIsLoading ? '...' : bowlsStatus['down-change']}
-            </p>
+            <MessageBox isLoading={bowlsIsLoading} date={bowlsStatus['down-change']} threshold={2} />
             <button onClick={updateWaterDown}>update</button>
+
             <p>Upstairs Water</p>
-            <p>
-                {bowlsIsLoading ? '...' : bowlsStatus['up-change']}
-            </p>
+            <MessageBox isLoading={bowlsIsLoading} date={bowlsStatus['up-change']} threshold={2}/>
             <button onClick={updateWaterUp}>update</button>
+
             <h2 className="head-grid">Litters</h2>
+
             <p className="head-grid">Downstairs Litter</p>
+
             <p> - scooped</p>
-            <p>
-                {littersIsLoading ? '...' : littersStatus["down-scoop"]}
-            </p>
+            <MessageBox isLoading={littersIsLoading} date={littersStatus['down-scoop']} threshold={2} />
             <button onClick={updateScoopDown}>update</button>
+            
             <p> - changed</p>
-            <p>
-                {littersIsLoading ? '...' : littersStatus["down-change"]}
-            </p>
+            <MessageBox isLoading={littersIsLoading} date={littersStatus['down-change']} threshold={21} />
             <button onClick={updateCleanDown}>update</button>
+
             <p className="head-grid">Upstairs Litter</p>
+
             <p> - scooped</p>
-            <p>
-                {littersIsLoading ? '...' : littersStatus["up-scoop"]}
-            </p>
+            <MessageBox isLoading={littersIsLoading} date={littersStatus['up-scoop']} threshold={2} />
             <button onClick={updateScoopUp}>update</button>
+
             <p> - changed</p>
-            <p>
-                {littersIsLoading ? '...' : littersStatus["up-change"]}
-            </p>
+            <MessageBox isLoading={littersIsLoading} date={littersStatus['up-change']} threshold={21} />
             <button onClick={updateCleanUp}>update</button>
+
             <h2 className="head-grid">Treatments</h2>
+
             <p>Flea</p>
-            <p>
-                {treatmentsIsLoading ? '...' : treatmentsStatus.fleas }
-            </p>
+            <MessageBox isLoading={treatmentsIsLoading} date={treatmentsStatus.fleas} threshold={30} />
             <button onClick={updateFleas}>update</button>
+
             <p>Worms</p>
-            <p>
-                {treatmentsIsLoading ? '...' : treatmentsStatus.worms }
-            </p>
+            <MessageBox isLoading={treatmentsIsLoading} date={treatmentsStatus.worms} threshold={90} />
             <button onClick={updateWorms}>update</button>
         </div>
     )
