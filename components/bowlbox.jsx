@@ -16,15 +16,15 @@ const BowlBox = ({}) => {
     const { status, isLoading } = useBowls();
 
     if (!isLoading && message == '') {
-        
+
         const meal = newHour < 12 ? 'breakfast' : 'dinner';
 
-        const m = status.food.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4}), \d{1,2}/);
+        const m = status.food.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4}), (\d{1,2})/);
         const oldHour = parseInt(m[4]);
         const oldDay = parseInt(m[1]);
         const oldMonth = parseInt(m[2]) - 1;
         const oldYear = parseInt(m[3]);
-
+        
         // if not today she needs feeding
         if (oldDay != newDate.getDate() || oldMonth != newDate.getMonth() || oldYear != newDate.getFullYear() ) {
             message = `needs ${meal}`;
