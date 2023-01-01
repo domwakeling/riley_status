@@ -47,6 +47,7 @@ h1,h2 {
     display: grid;
     grid-template-columns: auto auto 70px;
     grid-template-rows: auto;
+    column-gap: 0.5rem;
 }
 
 .head-grid {

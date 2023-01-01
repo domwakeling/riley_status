@@ -143,7 +143,7 @@ const MainGrid = () => {
             <button onClick={updateFleas}>update</button>
 
             <p>Worms</p>
-            <MessageBox isLoading={treatmentsIsLoading} data={treatmentsStatus} date='worms' threshold={90} />
+            <MessageBox isLoading={treatmentsIsLoading} data={treatmentsStatus} date='worms' threshold={180} />
             <button onClick={updateWorms}>update</button>
         </div>
     )

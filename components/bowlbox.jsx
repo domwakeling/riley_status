@@ -31,7 +31,7 @@ const BowlBox = ({}) => {
         } else {
             // it's between 6-12 or 18-24; check if fed in the last 6 hours
             if ((newHour - oldHour) < 6) {
-                message = `${meal} has been served`
+                message = `${meal} served`
             } else {
                 message = `needs ${meal}`;
             }
