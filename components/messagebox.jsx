@@ -1,3 +1,5 @@
+import Indicator from "./indicator";
+
 const MessageBox = ({ isLoading, data, date, threshold }) => {
 
     let oldDate = null;
@@ -40,9 +42,12 @@ const MessageBox = ({ isLoading, data, date, threshold }) => {
     const classToAdd = (daysAgo >= threshold ? 'overdue' : 'timely')
 
     return (
-        <p className={classToAdd}>
-            {isLoading ? '...' : message}
-        </p>
+        <div style={{display: 'flex'}}>
+            <Indicator iColor={classToAdd} />
+            <p className={classToAdd}>
+                {isLoading ? '...' : message}
+            </p>
+        </div>
     )
 }
 

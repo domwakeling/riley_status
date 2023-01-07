@@ -1,3 +1,4 @@
+import Indicator from "./indicator";
 import useBowls from "../lib/bowls";
 
 const BowlBox = ({}) => {
@@ -10,8 +11,6 @@ const BowlBox = ({}) => {
     if (newHour < 6 || ( newHour >= 12 && newHour < 18 ) ) {
         message = 'no meal due';
     }
-
-    console.log(newHour);
 
     const { status, isLoading } = useBowls();
 
@@ -41,10 +40,14 @@ const BowlBox = ({}) => {
     }
 
     const classToAdd = /^need/.test(message) ? 'overdue' : 'timely';
-    console.log(classToAdd);
 
     return (
-        <p className={classToAdd}>{message}</p>
+        <div style={{display: 'flex'}}>
+            <Indicator iColor={classToAdd} />
+            <p className={classToAdd}>
+                {isLoading ? '...' : message}
+            </p>
+        </div>
     )
 }
 
