@@ -43,7 +43,7 @@ const MessageBox = ({ isLoading, data, date, threshold }) => {
 
     return (
         <div style={{display: 'flex'}}>
-            <Indicator iColor={classToAdd} />
+            {!isLoading && <Indicator iColor={classToAdd} />}
             <p className={classToAdd}>
                 {isLoading ? '...' : message}
             </p>

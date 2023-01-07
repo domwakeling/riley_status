@@ -43,7 +43,7 @@ const BowlBox = ({}) => {
 
     return (
         <div style={{display: 'flex'}}>
-            <Indicator iColor={classToAdd} />
+            {!isLoading && <Indicator iColor={classToAdd} />}
             <p className={classToAdd}>
                 {isLoading ? '...' : message}
             </p>
