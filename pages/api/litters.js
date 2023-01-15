@@ -65,13 +65,20 @@ const handler = async (req, res) => {
         const cleaned = JSON.parse(req.body).cleaned;
 
         try {
+            let update = "";
+            if (/change$/.test(cleaned)) {
+                const newKey = cleaned.replace('change', 'scoop');
+                update = `{"${cleaned}":"${date}","${newKey}":"${date}"}`;
+            } else {
+                update = `{"${cleaned}":"${date}"}`;
+            }
             const patch_result = await fetch(url, {
                 method: 'PATCH',
                 headers: {
                     'X-API-Key': process.env.DETA_KEY,
                     'Content-Type': 'application/json'
                 },
-                body: `{"set":{"${cleaned}":"${date}"}}`
+                body: `{"set":${update}}`
             });
 
             const data = await patch_result.json();

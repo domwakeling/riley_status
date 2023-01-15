@@ -123,7 +123,7 @@ const MainGrid = () => {
             <button onClick={updateScoopDown}>update</button>
 
             <p> - changed</p>
-            <MessageBox isLoading={littersIsLoading} data={littersStatus} date='down-change' threshold={21} />
+            <MessageBox isLoading={littersIsLoading} data={littersStatus} date='down-change' threshold={28} />
             <button onClick={updateCleanDown}>update</button>
 
             <p className="head-grid">Upstairs Litter</p>
@@ -133,7 +133,7 @@ const MainGrid = () => {
             <button onClick={updateScoopUp}>update</button>
 
             <p> - changed</p>
-            <MessageBox isLoading={littersIsLoading} data={littersStatus} date='up-change' threshold={21} />
+            <MessageBox isLoading={littersIsLoading} data={littersStatus} date='up-change' threshold={28} />
             <button onClick={updateCleanUp}>update</button>
 
             <h2 className="head-grid">Treatments</h2>
