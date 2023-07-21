@@ -38,3 +38,6 @@ next-env.d.ts
 #design diles
 /_design
 .vscode/settings.json
+
+#vscode
+.vscode
