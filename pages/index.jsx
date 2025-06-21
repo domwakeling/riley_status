@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import MainGrid from '../components/MainGrid';
+import MainGrid from '../components/MainGrid.jsx';
 import rileyPic from '../public/riley_cartoon_200px.png';
 
 const HomePage = () => {
