@@ -1,25 +1,22 @@
-import BowlBox from './bowlbox';
-import MessageBox from './messagebox';
+import BowlBox from './BowlBox';
+import MessageBox from './MessageBox';
 import { mutate } from 'swr';
-import useBowls from '../lib/bowls';
-import useLitters from '../lib/litters';
-import useTreatments from '../lib/treatments';
+import useCatData from '../lib/getData';
 
 const MainGrid = () => {
 
-    const { status: bowlsStatus, isLoading: bowlsIsLoading } = useBowls();
-    const { status: littersStatus, isLoading: littersIsLoading } = useLitters();
-    const { status: treatmentsStatus, isLoading: treatmentsIsLoading } = useTreatments();
+    const { status, isLoading } = useCatData();
 
-    const updateBowls = async (changed) => {
+    const updateData = async (changed) => {
         try {
-            const res = await fetch('/api/bowls', {
-                method: 'PATCH',
+            const res = await fetch('/api/update', {
+                method: 'POST',
                 body: JSON.stringify({
                     changed
                 })
             });
-            mutate('/api/bowls')
+            console.log(res);
+            mutate('/api/get')
         } catch (err) {
             console.warn(err)
         }
@@ -27,75 +24,47 @@ const MainGrid = () => {
 
     const updateFood = (e) => {
         e.preventDefault();
-        updateBowls('food');
+        updateData('food');
     }
 
     const updateWaterUp = (e) => {
         e.preventDefault();
-        updateBowls('up-change');
+        updateData('upWaterChange');
     }
 
     const updateWaterDown = (e) => {
         e.preventDefault();
-        updateBowls('down-change');
-    }
-
-    const updateLitters = async (cleaned) => {
-        try {
-            const res = await fetch('/api/litters', {
-                method: 'PATCH',
-                body: JSON.stringify({
-                    cleaned
-                })
-            });
-            mutate('/api/litters')
-        } catch (err) {
-            console.warn(err)
-        }
+        updateData('downWaterChange');
     }
 
     const updateScoopUp = (e) => {
         e.preventDefault();
-        updateLitters('up-scoop');
+        updateData('upScoop');
     }
 
     const updateScoopDown = (e) => {
         e.preventDefault();
-        updateLitters('down-scoop');
+        updateData('downScoop');
     }
 
     const updateCleanUp = (e) => {
         e.preventDefault();
-        updateLitters('up-change');
+        updateData('upLitterChange');
     }
 
     const updateCleanDown = (e) => {
         e.preventDefault();
-        updateLitters('down-change');
-    }
-
-    const updateTreatments = async (treatment) => {
-        try {
-            const res = await fetch('/api/treatments', {
-                method: 'PATCH',
-                body: JSON.stringify({
-                    treatment
-                })
-            });
-            mutate('/api/treatments')
-        } catch (err) {
-            console.warn(err)
-        }
+        updateData('downLitterChange');
     }
 
     const updateWorms = (e) => {
         e.preventDefault();
-        updateTreatments('worms');
+        updateData('worms');
     }
 
     const updateFleas = (e) => {
         e.preventDefault();
-        updateTreatments('fleas');
+        updateData('fleas');
     }
 
     return (
@@ -107,11 +76,11 @@ const MainGrid = () => {
             <button onClick={updateFood}>update</button>
 
             <p>Downstairs Water</p>
-            <MessageBox isLoading={bowlsIsLoading} data={bowlsStatus} date='down-change' threshold={2} />
+            <MessageBox isLoading={isLoading} data={status} date='downWaterChange' threshold={2} />
             <button onClick={updateWaterDown}>update</button>
 
             <p>Upstairs Water</p>
-            <MessageBox isLoading={bowlsIsLoading} data={bowlsStatus} date='up-change' threshold={2}/>
+            <MessageBox isLoading={isLoading} data={status} date='upWaterChange' threshold={2}/>
             <button onClick={updateWaterUp}>update</button>
 
             <h2 className="head-grid">Litters</h2>
@@ -119,31 +88,31 @@ const MainGrid = () => {
             <p className="head-grid">Downstairs Litter</p>
 
             <p> - scooped</p>
-            <MessageBox isLoading={littersIsLoading} data={littersStatus} date='down-scoop' threshold={2} />
+            <MessageBox isLoading={isLoading} data={status} date='downScoop' threshold={2} />
             <button onClick={updateScoopDown}>update</button>
 
             <p> - changed</p>
-            <MessageBox isLoading={littersIsLoading} data={littersStatus} date='down-change' threshold={35} />
+            <MessageBox isLoading={isLoading} data={status} date='downLitterChange' threshold={35} />
             <button onClick={updateCleanDown}>update</button>
 
             <p className="head-grid">Upstairs Litter</p>
 
             <p> - scooped</p>
-            <MessageBox isLoading={littersIsLoading} data={littersStatus} date='up-scoop' threshold={2} />
+            <MessageBox isLoading={isLoading} data={status} date='upScoop' threshold={2} />
             <button onClick={updateScoopUp}>update</button>
 
             <p> - changed</p>
-            <MessageBox isLoading={littersIsLoading} data={littersStatus} date='up-change' threshold={28} />
+            <MessageBox isLoading={isLoading} data={status} date='upLitterChange' threshold={28} />
             <button onClick={updateCleanUp}>update</button>
 
             <h2 className="head-grid">Treatments</h2>
 
             <p>Flea</p>
-            <MessageBox isLoading={treatmentsIsLoading} data={treatmentsStatus} date='fleas' threshold={30} />
+            <MessageBox isLoading={isLoading} data={status} date='fleas' threshold={30} />
             <button onClick={updateFleas}>update</button>
 
             <p>Worms</p>
-            <MessageBox isLoading={treatmentsIsLoading} data={treatmentsStatus} date='worms' threshold={180} />
+            <MessageBox isLoading={isLoading} data={status} date='worms' threshold={180} />
             <button onClick={updateWorms}>update</button>
         </div>
     )

@@ -1,5 +1,5 @@
-import Indicator from "./indicator";
-import useBowls from "../lib/bowls";
+import CommonBox from "./CommonBox";
+import useCatData from "../lib/getData";
 
 const BowlBox = ({}) => {
 
@@ -12,7 +12,7 @@ const BowlBox = ({}) => {
         message = 'no meal due';
     }
 
-    const { status, isLoading } = useBowls();
+    const { status, isLoading } = useCatData();
 
     if (!isLoading && message == '') {
 
@@ -42,12 +42,7 @@ const BowlBox = ({}) => {
     const classToAdd = /^need/.test(message) ? 'overdue' : 'timely';
 
     return (
-        <div style={{display: 'flex'}}>
-            {!isLoading && <Indicator iColor={classToAdd} />}
-            <p className={classToAdd}>
-                {isLoading ? '...' : message}
-            </p>
-        </div>
+        <CommonBox isLoading={isLoading} classToAdd={classToAdd} message={message} />
     )
 }
 

@@ -45,9 +45,10 @@ h1,h2 {
 
 #content-grid {
     display: grid;
-    grid-template-columns: auto auto 70px;
+    grid-template-columns: 180px auto 70px;
     grid-template-rows: auto;
     column-gap: 0.5rem;
+    width: calc(100% - 20px)
 }
 
 .head-grid {

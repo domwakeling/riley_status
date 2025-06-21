@@ -35,9 +35,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-#design diles
+#design files
 /_design
 .vscode/settings.json
 
 #vscode
 .vscode
+
+#nvmrc
+.nvmrc

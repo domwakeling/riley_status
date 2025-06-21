@@ -1,4 +1,4 @@
-import Indicator from "./indicator";
+import CommonBox from "./CommonBox";
 
 const MessageBox = ({ isLoading, data, date, threshold }) => {
 
@@ -8,18 +8,22 @@ const MessageBox = ({ isLoading, data, date, threshold }) => {
     let message = "";
 
     if (!isLoading) {
-        const m = data[date].match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
-        oldDate = new Date();
-        oldDate.setDate(m[1]);
-        oldDate.setMonth(parseInt(m[2] - 1));
-        oldDate.setFullYear(m[3]);
-        oldDate.setHours(0);
-        oldDate.setMinutes(0);
-        oldDate.setSeconds(0);
+        try {
+            const m = data[date].match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+            oldDate = new Date();
+            oldDate.setDate(m[1]);
+            oldDate.setMonth(parseInt(m[2] - 1));
+            oldDate.setFullYear(m[3]);
+            oldDate.setHours(0);
+            oldDate.setMinutes(0);
+            oldDate.setSeconds(0);
 
-        newDate.setHours(0);
-        newDate.setMinutes(0);
-        newDate.setSeconds(0);
+            newDate.setHours(0);
+            newDate.setMinutes(0);
+            newDate.setSeconds(0);
+        } catch (err) {
+            console.warn(err)
+        }
     }
 
     if (oldDate) {
@@ -42,12 +46,7 @@ const MessageBox = ({ isLoading, data, date, threshold }) => {
     const classToAdd = (daysAgo >= threshold ? 'overdue' : 'timely')
 
     return (
-        <div style={{display: 'flex'}}>
-            {!isLoading && <Indicator iColor={classToAdd} />}
-            <p className={classToAdd}>
-                {isLoading ? '...' : message}
-            </p>
-        </div>
+        <CommonBox isLoading={isLoading} classToAdd={classToAdd} message={message} />
     )
 }
 
