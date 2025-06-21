@@ -1,5 +1,5 @@
-import BowlBox from './BowlBox_';
-import MessageBox from './MessageBox_';
+import BowlBox from './BowlBox'
+import MessageBox from './MessageBox';
 import { mutate } from 'swr';
 import useCatData from '../lib/getData';
 

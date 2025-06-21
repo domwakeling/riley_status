@@ -1,4 +1,4 @@
-import Indicator from "./Indicator_";
+import Indicator from "./Indicator";
 
 const CommonBox = ({ isLoading, classToAdd, message }) => {
     return (
