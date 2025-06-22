@@ -14,7 +14,9 @@ const BowlBox = ({}) => {
 
     const { status, isLoading } = useCatData();
 
-    if (!isLoading && message == '') {
+    if (!isLoading && message == '' && status.food != null && status.food != undefined ) {
+
+        console.log(status)
 
         const meal = newHour < 12 ? 'breakfast' : 'dinner';
 

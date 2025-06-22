@@ -1,4 +1,4 @@
-import BowlBox from './BowlBox'
+import BowlBox from './BowlBox';
 import MessageBox from './MessageBox';
 import { mutate } from 'swr';
 import useCatData from '../lib/getData';
